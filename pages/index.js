@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Head from 'next/head';
-import Postcard from '@/components/Postcard';
 import Categories from '@/components/Categories';
 import Postwidget from '@/components/Postwidget';
 import { getPosts } from '@/services';
 import FeaturedPosts from '@/sections/FeaturedPosts';
+import PostCard from '@/components/PostCard';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -23,7 +23,7 @@ export default function Home({posts}) {
     <div className='lg:col-span-8 col-span-1'>
     {posts.map((post, index)=>(
     
-     <Postcard key={index} post = {post.node}/>
+     <PostCard key={index} post = {post.node}/>
   
   ))}
     </div>
