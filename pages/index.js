@@ -5,8 +5,8 @@ import Categories from '@/components/Categories';
 import Postwidget from '@/components/Postwidget';
 import { getPosts } from '@/services';
 import FeaturedPosts from '@/sections/FeaturedPosts';
- import PostCard from '@/components/PostCard';
-import { useEffect, useRef , useState} from 'react';
+import PostCard from '@/components/PostCard';
+
 
 const inter = Inter({ subsets: ['latin'] })
 
