@@ -13,6 +13,7 @@ const [categories, setCategories] = useState([]);
 useEffect(() => {
   getCategories().then((newCategories) => {
     setCategories(newCategories);
+
   });
 }, []);
 
@@ -27,15 +28,11 @@ useEffect(() => {
             </span> 
         </Link>
      </div>
-     <div className="hidden md:float-left md:contents" >
-        {categories.map((category)=>(
-            <Link key={category.slug} href={`/category/${category.slug}`}>
-             <span className="md:float-right mt-2 align-middle text-white ml-4 font-semibold cursor-pointer">
-               {category.name}
-             </span>
-            </Link>
-        ))}
-     </div>
+     <div className="md:float-left md:contents">
+          {categories.map((category, index) => (
+            <Link key={index} href={`/category/${category.slug}`}><span className="md:float-right mt-2 align-middle text-white ml-4 font-semibold cursor-pointer">{category.name}</span></Link>
+          ))}
+        </div>
     </div>
     </div>
   )

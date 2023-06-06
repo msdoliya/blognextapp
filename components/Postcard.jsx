@@ -1,12 +1,38 @@
-import React from 'react';
+import React, { useRef , useEffect, useState} from 'react';
 import Image from 'next/image';
 import moment from 'moment';
 import Link from 'next/link';
 
 
 
-const PostCard = ({ post }) => (
-  <div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
+const PostCard = ({ post, IId }) =>{ 
+
+   const [inview, setInview] = useState(false);
+
+  let callback = (entries, observer) =>{
+    entries.forEach((entry)=>{
+      console.log(entry)
+      if(entry.isIntersecting ){
+        setInview(true);
+      }
+    })
+  }
+  const ref = useRef();
+
+  useEffect(()=>{
+    let observer =  new IntersectionObserver(callback)
+   if(ref?.current){
+
+    observer.observe(ref.current);
+   }
+
+    return()=>{
+      observer.disconnect
+    }
+  },[])
+ 
+  return  (
+    <div  id={IId} ref={ref} style={{height:"800px"}} className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
     {/* <div className="relative shadow-md inline-block w-full h-60 lg:h-80 mb-6">
       <Image
         unoptimized
@@ -17,9 +43,10 @@ const PostCard = ({ post }) => (
         src={post.featuredImage.url}
       />
     </div> */}
-    <div className="relative overflow-hidden shadow-md pb-80 mb-6">
-      <img src={post.featuredImage.url} alt="" className="object-top absolute h-80 w-full object-cover  shadow-lg rounded-t-lg lg:rounded-lg" />
-    </div>
+  {  inview&&   <>  <div  className="relative overflow-hidden shadow-md pb-80 mb-6">
+      <Image height={400} width={400} src={post.featuredImage.url} alt="" className="object-top absolute h-80 w-full object-cover  shadow-lg rounded-t-lg lg:rounded-lg" />
+
+   </div>
 
     <h1 className="transition duration-700 text-center mb-8 cursor-pointer hover:text-pink-600 text-3xl font-semibold">
       <Link href={`/post/${post.slug}`}>{post.title}</Link>
@@ -44,14 +71,26 @@ const PostCard = ({ post }) => (
       </div>
     </div>
     <p className="text-center text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8">
-      {post.excerpt}
+      {post.excerpt.substr(0, 250)}
     </p>
     <div className="text-center">
       <Link href={`/post/${post.slug}`}>
         <span className="transition duration-500 ease transform hover:-translate-y-1 inline-block bg-pink-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer">Continue Reading</span>
       </Link>
     </div>
+    </>
+    }
   </div>
-);
+  ) 
+  // :
+  // (
+    
+  //   <div  ref={ref} style={{height:"700px"}} className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
+    
+       
+  //   </div>
+  
+  // )  
+}
 
 export default PostCard;

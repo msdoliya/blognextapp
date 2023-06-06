@@ -3,6 +3,7 @@ import { getRecentPosts } from '@/services'
 import { getSimilarPosts } from '@/services'
 import moment from 'moment'
 import Link from 'next/link'
+import Image from 'next/image'
 
 
 const Postwidget = ({categories, slug}) => {
@@ -26,7 +27,7 @@ const Postwidget = ({categories, slug}) => {
        {relatedPosts.map((post, index)=>(
         <div key={post.title} className='flex item-center w-full'>
           <div className='w-16 flex-none'>
-            <img src={post.featuredImage.url} alt={post.title} width='60px' height='60px' className='align-middle rounded-full' />
+            <Image src={post.featuredImage.url} alt={post.title} width={60} height={60} className='align-middle rounded-full' />
           </div>
           <div className="flex-grow ml-4">
             <p className='text-grey-500 font-xs'>
