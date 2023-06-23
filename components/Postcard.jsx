@@ -11,7 +11,6 @@ const PostCard = ({ post, IId }) =>{
 
   let callback = (entries, observer) =>{
     entries.forEach((entry)=>{
-      console.log(entry)
       if(entry.isIntersecting ){
         setInview(true);
       }
@@ -32,7 +31,7 @@ const PostCard = ({ post, IId }) =>{
   },[])
  
   return  (
-    <div  id={IId} ref={ref} style={{height:"800px"}} className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
+    <div  id={IId} ref={ref}  className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
     {/* <div className="relative shadow-md inline-block w-full h-60 lg:h-80 mb-6">
       <Image
         unoptimized
@@ -43,6 +42,8 @@ const PostCard = ({ post, IId }) =>{
         src={post.featuredImage.url}
       />
     </div> */}
+
+
   {  inview&&   <>  <div  className="relative overflow-hidden shadow-md pb-80 mb-6">
       <Image height={400} width={400} src={post.featuredImage.url} alt="" className="object-top absolute h-80 w-full object-cover  shadow-lg rounded-t-lg lg:rounded-lg" />
 

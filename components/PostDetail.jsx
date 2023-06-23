@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import Image from 'next/image';
+import Head from 'next/head';
 
 const PostDetail = ({post}) => {
 
@@ -47,6 +48,14 @@ const PostDetail = ({post}) => {
 
   return (
     <div className='bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8'>
+
+<Head>
+  <title>
+    {post.title}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7861568079733571"
+     crossorigin="anonymous"></script>
+  </title>
+</Head>
       <div className='relative overflow-hidden shadow-md mb-6'>
          <Image  width={400} height={400} src={post.featuredImage.url} alt={post.title} className='object-top h-full w-full rounded-t-lg ' />
       </div>
